@@ -24,6 +24,14 @@ As versões seguem o `version:` do `pubspec.yaml` (SSOT). O campo `notes` do
     linhas não-vazias — o começo da seção deve fazer sentido sozinho.
 -->
 
+## [2.1.20] - 2026-10-25
+
+### Changed
+- Terminal engine (flterm/libghostty) updated: compression scheduling no longer
+  busy-spins, IME geometry is pushed to the system only while a composition is
+  active (lower CPU while typing), and Ctrl+Tab / Ctrl+Shift+Tab are no longer
+  sent to the shell, leaving them free for app shortcuts.
+
 ## [2.1.19] - 2026-10-25
 
 ### Added
