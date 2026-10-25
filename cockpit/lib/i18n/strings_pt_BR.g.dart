@@ -1324,6 +1324,7 @@ class _Translations$settings$language$pt_BR extends Translations$settings$langua
 	@override String get english => 'Inglês';
 	@override String get portugueseBr => 'Português (BR)';
 	@override String get spanish => 'Espanhol';
+	@override String get simplifiedChinese => '简体中文';
 }
 
 // Path: settings.page
@@ -2702,6 +2703,7 @@ extension on TranslationsPtBr {
 			'settings.language.english' => 'Inglês',
 			'settings.language.portugueseBr' => 'Português (BR)',
 			'settings.language.spanish' => 'Espanhol',
+			'settings.language.simplifiedChinese' => '简体中文',
 			'settings.page.header.back' => 'Voltar',
 			'settings.page.header.title' => 'Configurações',
 			'settings.page.nav.general' => 'Geral',
@@ -2944,9 +2946,9 @@ extension on TranslationsPtBr {
 			'fileOperation.error.nameHasSlash' => 'O nome não pode conter “/”.',
 			'fileOperation.error.invalidName' => 'Nome inválido.',
 			'fileOperation.error.remoteDropUnsupported' => 'Soltar arquivos num workspace remoto ainda não é suportado.',
-			'theme.error.io' => 'Não foi possível ler ou gravar o arquivo do tema.',
 			_ => null,
 		} ?? switch (path) {
+			'theme.error.io' => 'Não foi possível ler ou gravar o arquivo do tema.',
 			'theme.error.ioDetail' => ({required Object detail}) => 'Não foi possível ler ou gravar o arquivo do tema: ${detail}',
 			'theme.error.malformedJson' => ({required Object detail}) => 'Este arquivo não é um JSON válido: ${detail}',
 			'theme.error.invalidTheme' => 'Este arquivo não é um tema válido.',

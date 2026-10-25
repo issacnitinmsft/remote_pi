@@ -2527,7 +2527,7 @@ class _ThemeModeDropdown extends StatelessWidget {
 /// Opções de idioma da interface. `system` = seguir o locale do SO
 /// (`AppSettings.locale == null`); as demais mapeiam pro código raw persistido
 /// e repassado ao `slang` (`LocaleSettings.setLocaleRaw`).
-enum _LocaleOption { system, en, es, ptBr }
+enum _LocaleOption { system, en, es, ptBr, zh }
 
 class _LocaleDropdown extends StatelessWidget {
   const _LocaleDropdown({required this.value, required this.onChanged});
@@ -2541,12 +2541,14 @@ class _LocaleDropdown extends StatelessWidget {
     _LocaleOption.en: 'en',
     _LocaleOption.es: 'es',
     _LocaleOption.ptBr: 'pt-BR',
+    _LocaleOption.zh: 'zh',
   };
 
   _LocaleOption _optionOf(String? code) => switch (code) {
     'en' => _LocaleOption.en,
     'es' => _LocaleOption.es,
     'pt-BR' => _LocaleOption.ptBr,
+    'zh' => _LocaleOption.zh,
     _ => _LocaleOption.system,
   };
 
@@ -2561,6 +2563,7 @@ class _LocaleDropdown extends StatelessWidget {
       _LocaleOption.en: (label: tr.english, icon: Icons.language),
       _LocaleOption.es: (label: tr.spanish, icon: Icons.language),
       _LocaleOption.ptBr: (label: tr.portugueseBr, icon: Icons.language),
+      _LocaleOption.zh: (label: tr.simplifiedChinese, icon: Icons.language),
     };
     final current = _optionOf(value);
     final currentMeta = labels[current]!;

@@ -2792,6 +2792,9 @@ class Translations$settings$language$en {
 
 	/// en: 'Español'
 	String get spanish => 'Español';
+
+	/// en: '简体中文'
+	String get simplifiedChinese => '简体中文';
 }
 
 // Path: settings.page
@@ -4776,6 +4779,7 @@ extension on Translations {
 			'settings.language.english' => 'English',
 			'settings.language.portugueseBr' => 'Português (BR)',
 			'settings.language.spanish' => 'Español',
+			'settings.language.simplifiedChinese' => '简体中文',
 			'settings.page.header.back' => 'Back',
 			'settings.page.header.title' => 'Settings',
 			'settings.page.nav.general' => 'General',
@@ -5018,9 +5022,9 @@ extension on Translations {
 			'fileOperation.error.nameHasSlash' => 'Name cannot contain “/”.',
 			'fileOperation.error.invalidName' => 'Invalid name.',
 			'fileOperation.error.remoteDropUnsupported' => 'Dropping files into a remote workspace is not supported yet.',
-			'theme.error.io' => 'Could not read or write the theme file.',
 			_ => null,
 		} ?? switch (path) {
+			'theme.error.io' => 'Could not read or write the theme file.',
 			'theme.error.ioDetail' => ({required Object detail}) => 'Could not read or write the theme file: ${detail}',
 			'theme.error.malformedJson' => ({required Object detail}) => 'This file is not valid JSON: ${detail}',
 			'theme.error.invalidTheme' => 'This file is not a valid theme.',
