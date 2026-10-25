@@ -394,6 +394,13 @@ dependency_overrides:
   # montada mas o renderer nao recebe frames; ao reabrir, sync + layout
   # completo. Dylib nativa identica a 2026-10 (patch so Dart).
   #
+  # Tag cockpit-pin-flterm-upstream-2026-10e (d63161d): + PR #6 do fork
+  # (cfbraun): compression sem busy-spin, geometria de IME so durante composicao
+  # ativa (ganho de CPU) e Ctrl+Tab / Ctrl+Shift+Tab ignorados pelo terminal
+  # (ficam pro app, pre-requisito do cycle de abas). Inclui os fixes pos-merge
+  # da suite do flterm (scheduler no post-frame, testes de IME/autoscroll).
+  # Dylib nativa identica a 2026-10 (patch so Dart).
+  #
   # ATENCAO CI: ao trocar esta ref muda o ghostty.version; o cache de native
   # asset (.dart_tool/hooks_runner, build/native_assets) precisa ser invalidado,
   # senao a dylib velha crasha o processo (exit -10) ao carregar os bindings novos.
@@ -403,12 +410,12 @@ dependency_overrides:
   flterm:
     git:
       url: https://github.com/jacobaraujo7/libghostty.git
-      ref: cockpit-pin-flterm-upstream-2026-10d
+      ref: cockpit-pin-flterm-upstream-2026-10e
       path: packages/flterm
   libghostty:
     git:
       url: https://github.com/jacobaraujo7/libghostty.git
-      ref: cockpit-pin-flterm-upstream-2026-10d
+      ref: cockpit-pin-flterm-upstream-2026-10e
       path: packages/libghostty
   # Hover no WebView2 (Windows): o plugin 0.6.0 reenvia só MOVE ao
   # CompositionController, nunca LEAVE, e um method call por pixel. Fork pinado
