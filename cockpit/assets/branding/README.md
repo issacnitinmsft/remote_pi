@@ -14,7 +14,7 @@ segue como indicador de status.
 | `cockpit-mark-white.svg` / `cockpit-mark-black.svg` | Símbolo transparente, para fundo escuro / claro |
 | `cockpit-mark-mono-white.svg` / `cockpit-mark-mono-black.svg` | Monocromático (1 cor): tray, menu bar, gravação |
 | `png/` | Rasterizações dos SVGs (`rsvg-convert`), 16 a 1024 px |
-| `cockpit_logo.png` | Logo antigo (π do Remote Pi). Ainda referenciado por `welcome_view`, `loading_screen` e `file_icon` |
+| `cockpit_logo.png` | Ícone escuro em 512 px (cópia de `png/cockpit-icon-dark-512.png`), usado por `welcome_view`, `loading_screen` e `file_icon` |
 
 ## Construção (grade de 512u)
 
