@@ -24,6 +24,22 @@ As versões seguem o `version:` do `pubspec.yaml` (SSOT). O campo `notes` do
     linhas não-vazias — o começo da seção deve fazer sentido sozinho.
 -->
 
+## [2.1.21] - 2026-10-26
+
+### Added
+- File > New File (Cmd+N / Ctrl+N) opens an untitled text buffer, like VS Code.
+  The first save asks for a name and creates the file in the workspace root;
+  the editor then follows the chosen extension (highlighting and LSP).
+
+### Fixed
+- Kanban boards with more columns than the window width can now be scrolled
+  horizontally: the board shows a horizontal scrollbar and the mouse wheel
+  moves it sideways once the column under the cursor has nothing left to scroll.
+- Windows: document windows (markdown, panel, kanban) no longer share plugin
+  registrations with the main window.
+- App telemetry now keeps the exception text in warnings, so spawn failures
+  arrive with their cause and errno.
+
 ## [2.1.20] - 2026-10-25
 
 ### Changed
