@@ -7,6 +7,8 @@ import 'package:cockpit/app/core/data/diagnostics/diagnostics_log.dart';
 import 'package:cockpit/app/cockpit/domain/entities/file_view.dart';
 import 'package:cockpit/app/cockpit/domain/entities/scm_line_decorations.dart';
 import 'package:cockpit/app/cockpit/ui/session/file_viewer_session.dart';
+import 'package:cockpit/app/cockpit/ui/viewmodels/cockpit_viewmodel.dart';
+import 'package:cockpit/app/core/ui/file_operation_error_message.dart';
 import 'package:cockpit/app/cockpit/ui/session/document_host.dart';
 import 'package:cockpit/app/cockpit/ui/widgets/agent_markdown.dart';
 import 'package:cockpit/app/cockpit/ui/widgets/code_editor.dart';
@@ -264,6 +266,9 @@ class _FileViewerState extends State<FileViewer> {
     // servidor novo com raiz no SDK (isso indexaria o pacote inteiro e travava
     // a UI). Ver `LspServerPool._rootFor`. Arquivo solto sem workspace nenhum
     // continua degradando pro highlight léxico, sem crash.
+    // Untitled (⌘N): não há arquivo, logo não há documento pro servidor.
+    // Quando o buffer for salvo a sessão é retargada e este método roda de novo.
+    if (widget.session.scratch || path.isEmpty) return;
     _lspOn = true;
     final uri = Uri.file(path).toString();
     unawaited(vm.lspOpenDocument(path, text, widget.session.projectId));
@@ -618,6 +623,27 @@ class _FileViewerState extends State<FileViewer> {
     }
 
     final content = ctrl.text;
+    // Untitled (⌘N): pede o nome e materializa o arquivo na raiz do workspace
+    // (VSCode-style). A VM retarga a sessão; o listener de sessão recria o
+    // controller com a linguagem da extensão escolhida e liga o LSP.
+    if (widget.session.scratch) {
+      final name = await _promptScratchName();
+      if (name == null || !mounted) return false;
+      final result = await context.read<CockpitViewModel>().saveScratchAs(
+        widget.session.id,
+        name,
+        content,
+      );
+      if (!mounted) return false;
+      final error = result.fold((_) => null, (f) => f);
+      if (error != null) {
+        _showSaveError(fileOperationErrorMessage(context, error));
+        return false;
+      }
+      _baseline = content;
+      _updateDirty(false);
+      return true;
+    }
     setState(() => _saving = true);
     final ok = await widget.onSave(content);
     if (!mounted) return ok;
@@ -632,6 +658,80 @@ class _FileViewerState extends State<FileViewer> {
       await _runExternalFormatter(external);
     }
     return ok;
+  }
+
+  /// Prompt do nome do arquivo pro untitled (basename, extensão livre).
+  Future<String?> _promptScratchName() {
+    final tr = context.t.cockpit.fileViewer;
+    final ctrl = TextEditingController(text: tr.untitledDefaultName);
+    return showDialog<String>(
+      context: context,
+      builder: (context) {
+        final colors = context.colors;
+        return AlertDialog(
+          title: Text(
+            tr.saveAs,
+            style: context.typo.title.copyWith(
+              fontSize: 15,
+              color: colors.text,
+            ),
+          ),
+          content: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 360),
+            child: TextField(
+              controller: ctrl,
+              autofocus: true,
+              style: context.typo.mono.copyWith(
+                fontSize: 12.5,
+                color: colors.text,
+              ),
+              border: Border.all(color: colors.border),
+              borderRadius: BorderRadius.circular(6),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+              onSubmitted: (v) => Navigator.of(context).pop(v),
+            ),
+          ),
+          actions: [
+            GhostButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(context.t.common.cancel),
+            ),
+            PrimaryButton(
+              onPressed: () => Navigator.of(context).pop(ctrl.text),
+              child: Text(context.t.common.save),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _showSaveError(String message) {
+    showDialog<void>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(
+          context.t.cockpit.fileViewer.couldNotSave,
+          style: context.typo.title.copyWith(
+            fontSize: 15,
+            color: context.colors.text,
+          ),
+        ),
+        content: Text(
+          message,
+          style: context.typo.body.copyWith(
+            fontSize: 13,
+            color: context.colors.text2,
+          ),
+        ),
+        actions: [
+          PrimaryButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(context.t.common.ok),
+          ),
+        ],
+      ),
+    );
   }
 
   /// Formata sob demanda (⇧⌘F). Externo (file-based) tem precedência; senão

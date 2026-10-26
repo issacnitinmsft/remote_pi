@@ -43,6 +43,7 @@
       "checkForUpdates": "Check for Updates…",
       "file": "File",
       "newTerminal": "New Terminal",
+      "newFile": "New File",
       "openWorkspace": "Open Workspace",
       "goToFile": "Go to File…",
       "save": "Save",
@@ -359,6 +360,9 @@
       "openInAgent": "Open in ${harness}"
     },
     "fileViewer": {
+      "saveAs": "Save as",
+      "couldNotSave": "Could not save",
+      "untitledDefaultName": "untitled.txt",
       "cantOpen": "Can't open this file.",
       "couldNotLoadImage": "Could not load the image.",
       "preview": "Preview",

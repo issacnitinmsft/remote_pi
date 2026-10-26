@@ -274,6 +274,7 @@ class _Translations$core$menu$zh extends Translations$core$menu$en {
 	@override String get checkForUpdates => '检查更新…';
 	@override String get file => '文件';
 	@override String get newTerminal => '新建终端';
+	@override String get newFile => '新建文件';
 	@override String get openWorkspace => '打开工作区';
 	@override String get goToFile => '转到文件…';
 	@override String get save => '保存';
@@ -633,6 +634,9 @@ class _Translations$cockpit$fileViewer$zh extends Translations$cockpit$fileViewe
 	final TranslationsZh _root; // ignore: unused_field
 
 	// Translations
+	@override String get saveAs => '另存为';
+	@override String get couldNotSave => '无法保存';
+	@override String get untitledDefaultName => 'untitled.txt';
 	@override String get cantOpen => '无法打开此文件。';
 	@override String get couldNotLoadImage => '无法加载图片。';
 	@override String get preview => '预览';
@@ -1950,6 +1954,7 @@ extension on TranslationsZh {
 			'core.menu.checkForUpdates' => '检查更新…',
 			'core.menu.file' => '文件',
 			'core.menu.newTerminal' => '新建终端',
+			'core.menu.newFile' => '新建文件',
 			'core.menu.openWorkspace' => '打开工作区',
 			'core.menu.goToFile' => '转到文件…',
 			'core.menu.save' => '保存',
@@ -2239,6 +2244,9 @@ extension on TranslationsZh {
 			'cockpit.fileTreePanel.importAction' => '复制',
 			'cockpit.fileTreePanel.couldNotImportTitle' => '无法复制',
 			'cockpit.fileTreePanel.openInAgent' => ({required Object harness}) => '在 ${harness} 中打开',
+			'cockpit.fileViewer.saveAs' => '另存为',
+			'cockpit.fileViewer.couldNotSave' => '无法保存',
+			'cockpit.fileViewer.untitledDefaultName' => 'untitled.txt',
 			'cockpit.fileViewer.cantOpen' => '无法打开此文件。',
 			'cockpit.fileViewer.couldNotLoadImage' => '无法加载图片。',
 			'cockpit.fileViewer.preview' => '预览',
@@ -2428,12 +2436,12 @@ extension on TranslationsZh {
 			'cockpit.dbConnectionDialog.keyPassphrase' => '密钥口令',
 			'cockpit.dbConnectionDialog.savePassphrase' => '保存口令',
 			'cockpit.dbConnectionDialog.passwordOnHost' => '密码保存在主机上，而不是这台机器上。',
+			_ => null,
+		} ?? switch (path) {
 			'cockpit.sshPrompts.unknownSshHostTitle' => '未知的 SSH 主机',
 			'cockpit.sshPrompts.neverConnected' => ({required Object endpoint}) => 'Cockpit 从未连接过 ${endpoint}。',
 			'cockpit.sshPrompts.trustHint' => '仅当此指纹与服务器匹配时才信任。你可以在服务器上用以下命令核对：',
 			'cockpit.sshPrompts.trust' => '信任',
-			_ => null,
-		} ?? switch (path) {
 			'cockpit.sshPrompts.sshKeyPassphraseTitle' => 'SSH 密钥口令',
 			'cockpit.sshPrompts.unlockMessage' => ({required Object keyPath, required Object connectionName}) => '解锁 ${keyPath} 以连接「${connectionName}」。',
 			'cockpit.sshPrompts.keptInMemoryHint' => '口令在 Cockpit 退出前保留在内存中。要让智能体使用此连接，请在连接设置中启用「保存口令」。',
@@ -2942,12 +2950,12 @@ extension on TranslationsZh {
 			'fileOperation.error.formatterTimeout' => '格式化器超时。',
 			'fileOperation.error.formatterExitCode' => ({required Object code}) => '格式化器以退出码 ${code} 结束。',
 			'fileOperation.error.formatterFailed' => '格式化器无法运行。',
+			_ => null,
+		} ?? switch (path) {
 			'fileOperation.error.osFailure' => ({required Object detail}) => '${detail}',
 			'fileOperation.error.nameHasSlash' => '名称不能包含「/」。',
 			'fileOperation.error.invalidName' => '无效的名称。',
 			'fileOperation.error.remoteDropUnsupported' => '尚不支持将文件拖放到远程工作区。',
-			_ => null,
-		} ?? switch (path) {
 			'theme.error.io' => '无法读取或写入主题文件。',
 			'theme.error.ioDetail' => ({required Object detail}) => '无法读取或写入主题文件：${detail}',
 			'theme.error.malformedJson' => ({required Object detail}) => '此文件不是有效的 JSON：${detail}',

@@ -43,6 +43,7 @@
       "checkForUpdates": "Buscar Actualizaciones…",
       "file": "Archivo",
       "newTerminal": "Nueva Terminal",
+      "newFile": "Nuevo Archivo",
       "openWorkspace": "Abrir Workspace",
       "goToFile": "Ir a Archivo…",
       "save": "Guardar",
@@ -359,6 +360,9 @@
       "openInAgent": "Abrir en ${harness}"
     },
     "fileViewer": {
+      "saveAs": "Guardar como",
+      "couldNotSave": "No se pudo guardar",
+      "untitledDefaultName": "sin-titulo.txt",
       "cantOpen": "No se puede abrir este archivo.",
       "couldNotLoadImage": "No se pudo cargar la imagen.",
       "preview": "Vista previa",

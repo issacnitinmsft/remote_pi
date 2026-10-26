@@ -43,6 +43,7 @@
       "checkForUpdates": "检查更新…",
       "file": "文件",
       "newTerminal": "新建终端",
+      "newFile": "新建文件",
       "openWorkspace": "打开工作区",
       "goToFile": "转到文件…",
       "save": "保存",
@@ -359,6 +360,9 @@
       "openInAgent": "在 ${harness} 中打开"
     },
     "fileViewer": {
+      "saveAs": "另存为",
+      "couldNotSave": "无法保存",
+      "untitledDefaultName": "untitled.txt",
       "cantOpen": "无法打开此文件。",
       "couldNotLoadImage": "无法加载图片。",
       "preview": "预览",

@@ -84,6 +84,14 @@ List<MenuBarMenu> buildAppMenus(
           accelerator: const MenuAccelerator(LogicalKeyboardKey.keyT),
           onSelected: workspace.hasWorkspace ? workspace.newTerminal : null,
         ),
+      // ⌘N abre um buffer "Untitled-N" (VSCode-style): sem arquivo até o
+      // primeiro save, que pede o nome. ⇧⌘N segue sendo "workspace anterior".
+      if (!isMobilePlatform)
+        MenuAction(
+          tr.newFile,
+          accelerator: const MenuAccelerator(LogicalKeyboardKey.keyN),
+          onSelected: workspace.hasWorkspace ? workspace.newFile : null,
+        ),
       if (!isMobilePlatform) const MenuSeparator(),
       if (!isMobilePlatform)
         MenuAction(
