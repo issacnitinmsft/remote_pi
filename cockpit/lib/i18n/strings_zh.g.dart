@@ -46,6 +46,7 @@ class TranslationsZh extends Translations with BaseTranslations<AppLocale, Trans
 	@override late final _Translations$automation$zh automation = _Translations$automation$zh._(_root);
 	@override late final _Translations$fileOperation$zh fileOperation = _Translations$fileOperation$zh._(_root);
 	@override late final _Translations$theme$zh theme = _Translations$theme$zh._(_root);
+	@override late final _Translations$terminalAttachment$zh terminalAttachment = _Translations$terminalAttachment$zh._(_root);
 }
 
 // Path: core
@@ -181,6 +182,20 @@ class _Translations$theme$zh extends Translations$theme$en {
 
 	// Translations
 	@override late final _Translations$theme$error$zh error = _Translations$theme$error$zh._(_root);
+}
+
+// Path: terminalAttachment
+class _Translations$terminalAttachment$zh extends Translations$terminalAttachment$en {
+	_Translations$terminalAttachment$zh._(TranslationsZh root) : this._root = root, super.internal(root);
+
+	final TranslationsZh _root; // ignore: unused_field
+
+	// Translations
+	@override String importing({required Object completed, required Object total}) => '正在复制附件：${completed}/${total}';
+	@override String get nativeImage => '已请求代理粘贴图片。';
+	@override String get referenced => '已插入本地引用。';
+	@override String get remoteUnavailable => '远程终端暂不支持文件和图片。请粘贴文本或将文件传输到主机。';
+	@override String failed({required Object detail}) => '部分附件无法插入：${detail}';
 }
 
 // Path: core.bootstrapError
@@ -2966,6 +2981,11 @@ extension on TranslationsZh {
 			'theme.error.badColor' => ({required Object field, required Object value}) => '「${field}」处的「${value}」不是颜色。请使用 #RGB、#RRGGBB 或 #RRGGBBAA。',
 			'theme.error.unknownBase' => ({required Object value}) => '「extends」中的基础主题「${value}」未知。',
 			'theme.error.noVariants' => '主题未声明任何变体。请在「variants」下添加「dark」「light」或两者。',
+			'terminalAttachment.importing' => ({required Object completed, required Object total}) => '正在复制附件：${completed}/${total}',
+			'terminalAttachment.nativeImage' => '已请求代理粘贴图片。',
+			'terminalAttachment.referenced' => '已插入本地引用。',
+			'terminalAttachment.remoteUnavailable' => '远程终端暂不支持文件和图片。请粘贴文本或将文件传输到主机。',
+			'terminalAttachment.failed' => ({required Object detail}) => '部分附件无法插入：${detail}',
 			_ => null,
 		};
 	}
