@@ -24,6 +24,22 @@ As versões seguem o `version:` do `pubspec.yaml` (SSOT). O campo `notes` do
     linhas não-vazias — o começo da seção deve fazer sentido sozinho.
 -->
 
+## [2.1.22] - 2026-10-28
+
+### Added
+- Agent Orchestration app in the Gallery: an `.orc` document with Boxes and Graph views over its own terminal multiplexer, portable between worktrees, with a shared inspector, planned connections, observed traffic and temporary subagents (#272)
+- Paste and drop attachments into terminals: files, folders and clipboard images are handed to Claude, Codex, Pi and Copilot, with Windows clipboard support and WSL path conversion (#268)
+- `cockpit hook statusline` reports Claude Code context usage to the app when no custom status line is configured
+
+### Changed
+- anaki database drivers updated (sqlite 0.1.7, postgres 0.1.10, mysql 0.1.11, mssql 0.1.8, redis 0.1.6, mongodb 0.1.9) in the app and in cockpit-server
+- Telemetry writes SQLite rows in batches
+
+### Fixed
+- macOS Intel builds no longer fail when bundling native assets (dylib header padding)
+- Moving a terminal between docks keeps its native view mounted instead of freezing the window
+- Neovim settings check no longer notifies after the settings page is closed
+
 ## [2.1.21] - 2026-10-26
 
 ### Added
